@@ -1,0 +1,29 @@
+{
+  "name": "cnarios-playwright",
+  "version": "1.0.0",
+  "description": "Challenges from the website cnarios.com",
+  "main": "index.js",
+  "scripts": {
+    "test:e2e": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:ui": "playwright test --ui",
+    "test:report": "npx playwright show-report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allanRolle/cnarios-playwright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/allanRolle/cnarios-playwright/issues"
+  },
+  "homepage": "https://github.com/allanRolle/cnarios-playwright#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.5.0"
+  }
+}
