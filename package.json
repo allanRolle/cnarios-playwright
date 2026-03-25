@@ -4,7 +4,8 @@
   "description": "Challenges from the website cnarios.com",
   "main": "index.js",
   "scripts": {
-    "test:e2e": "playwright test",
+    "clean:reports": "rm -rf playwright-report/*",
+    "test:e2e": "npm run clean:reports && npx playwright test",
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug",
     "test:ui": "playwright test --ui",
