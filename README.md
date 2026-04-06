@@ -176,3 +176,34 @@ Challenges from the website cnarios.com
     <p>🏞️ 📸 🗺️ Visuel du composant sous test:</p>
     <img src="./assets/form.png">
 </details>
+
+## 🗂️ Struture du projet
+
+<pre>
+    .
+├── 📁 .github/
+│   └── 📁 workflows/
+│       └── 📄 cnarios-playwright.yaml   # Pipeline CI/CD pour Playwright
+├── 📁 assets/                           # Ressources statiques
+├── 📁 e2e/                              # Cœur des tests de bout en bout
+│   ├── 📁 concepts/                     # Dossier des spécifications (specs)
+│   │   ├── 📄 button.spec.ts            # Tests pour les boutons
+│   │   └── 📄 formRegistration.spec.ts  # Tests pour le formulaire
+│   ├── 📁 pages/                        # Page Object Model (POM)
+│   │   ├── 📄 BasePage.ts               # Classe parente avec méthodes communes
+│   │   ├── 📄 ButtonPage.ts             # Logique de la page boutons
+│   │   └── 📄 FormRegistration.ts       # Logique de la page formulaire
+│   ├── 📄 fixtures.ts                   # Extension du test Playwright (injection des pages)
+│   └── 📄 formRegistrationData.ts       # Données de test ou types TS
+├── 📁 node_modules/                     # Dépendances NPM
+├── 📁 playwright-report/                # Rapports générés après exécution
+│   ├── 📁 data/
+│   ├── 📁 trace/                        # Traces zip pour le debugging profond
+│   └── 📄 index.html                    # Rapport HTML interactif (Playwright Report)
+├── 📁 test-results/                     # Artefacts de tests (screenshots/vidéos d'échec)
+├── 📄 .gitignore
+├── 📄 package-lock.json
+├── 📄 package.json
+├── 📄 playwright.config.ts              # Configuration globale (browsers, timeouts, etc.)
+└── 📄 README.md
+</pre>
