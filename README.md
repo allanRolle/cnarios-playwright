@@ -19,6 +19,7 @@ Challenges from the website cnarios.com
 
 <details>
     <summary>Button</summary><br/>
+    <p>😎👌🔥 Positive Scenarios</p>
     <table>
         <tr>
             <th>Scenario</th>
@@ -57,6 +58,7 @@ Challenges from the website cnarios.com
             <td>Medium</td>
         </tr>   
     </table>
+    <p>🚨❗🚫 Negative Scenarios and Edge Cases</p>
     <table>
         <tr>
             <th>Scenario</th>
@@ -89,7 +91,7 @@ Challenges from the website cnarios.com
             <td>Medium</td>
         </tr>  
     </table>
-    <img src="./assets/form.png">
+    <p>🏞️ 📸 🗺️ Visuel du composant sous test:</p>
     <img src='./assets/buttons.png' alt='buttons' width='100%'>
 </details>
 
