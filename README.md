@@ -1,7 +1,3 @@
-# cnarios-playwright
-
-Challenges from the website cnarios.com
-
 # [Cnarios](https://www.cnarios.com/) in Playwright
 
 <p>🚀 Challenges and real-world scenarios to learn automation using Playwright</p>
