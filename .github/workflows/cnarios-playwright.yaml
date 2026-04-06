@@ -16,8 +16,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Create reports directory
-        run: mkdir -p playwright/reports
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
 
       - name: Run Playwright tests
         run: npm run test:e2e
@@ -29,3 +29,4 @@ jobs:
         with:
           name: playwright-report
           path: playwright-report/
+          retention-days: 30

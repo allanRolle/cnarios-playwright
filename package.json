@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "clean:reports": "rm -rf playwright-report/*",
-    "test:e2e": "npm run clean:reports && npx playwright test",
+    "pretest:e2e": "npm run clean:reports",
+    "test:e2e": "npx playwright test",
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug",
     "test:ui": "playwright test --ui",
