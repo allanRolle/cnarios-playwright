@@ -1,5 +1,5 @@
-import { test, expect } from '../fixtures'
-import { testData } from '../formRegistrationData'
+import { test, expect } from '../fixtures/fixtures'
+import { testData } from '../data/formRegistrationData'
 
 test.describe('Form Registration', () => {
   for (const [index, data] of testData.entries()) {
