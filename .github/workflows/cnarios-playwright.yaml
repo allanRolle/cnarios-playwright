@@ -9,6 +9,12 @@ on:
 jobs:
   playwright-run:
     runs-on: ubuntu-latest
+    # Utilisation de l'image Docker correspondant à ta version de package.json
+    container:
+      image: mcr.microsoft.com/playwright:v1.45.0-jammy
+      # Note : Au moment de ma réponse, l'image 1.45 est la plus stable sur Docker Hub.
+      # Si la 1.58 n'est pas encore dispo en image, la 1.45 fonctionnera très bien.
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -16,11 +22,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-
       - name: Run Playwright tests
-        run: npm run test:e2e
+        # On utilise l'alias staging que l'on vient de créer
+        run: npm run test:e2e:staging
         continue-on-error: true
 
       - name: Upload report

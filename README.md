@@ -295,7 +295,7 @@
 <p>✅ Séparation des données de tests de la logique</p>
 <p>✅ Architecture propre et évolutive</p>
 
-## 🗂️ Struture du projet
+## 🗂️ Structure du projet
 
 <pre>
 .

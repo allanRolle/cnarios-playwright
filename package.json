@@ -7,9 +7,11 @@
     "clean:reports": "rm -rf playwright-report/*",
     "pretest:e2e": "npm run clean:reports",
     "test:e2e": "npx playwright test",
-    "test:headed": "playwright test --headed",
-    "test:debug": "playwright test --debug",
-    "test:ui": "playwright test --ui",
+    "test:e2e:staging": "BASE_URL=https://cnarios.com npx playwright test",
+    "test:e2e:prod": "BASE_URL=https://www.cnarios.com npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:ui": "npx playwright test --ui",
     "test:report": "npx playwright show-report"
   },
   "repository": {
@@ -26,6 +28,6 @@
   "homepage": "https://github.com/allanRolle/cnarios-playwright#readme",
   "devDependencies": {
     "@playwright/test": "^1.58.2",
-    "@types/node": "^25.6.0"
+    "@types/node": "^25.5.0"
   }
 }
