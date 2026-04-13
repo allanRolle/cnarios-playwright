@@ -312,7 +312,7 @@
 │   │   ├── BasePage.ts               # Classe parente avec méthodes communes
 │   │   ├── ButtonPage.ts             # Logique de la page boutons
 │   │   └── CheckboxPage.ts           # Logique de la page checkbox
-│   │       └── FormRegistration.ts   # Logique de la page formulaire
+│   │   └── FormRegistrationPage.ts   # Logique de la page formulaire
 │   └── tests/                        # Dossier des spécifications (specs)
 │       ├── button.spec.ts            # Tests du composant bouton
 │       ├── checkbox.spec.ts          # Tests du composant checkbox
