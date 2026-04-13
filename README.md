@@ -311,10 +311,12 @@
 │   ├── pages/                        # Page Object Model (POM)
 │   │   ├── BasePage.ts               # Classe parente avec méthodes communes
 │   │   ├── ButtonPage.ts             # Logique de la page boutons
-│   │   └── FormRegistration.ts       # Logique de la page formulaire
+│   │   └── CheckboxPage.ts           # Logique de la page checkbox
+│   │       └── FormRegistration.ts   # Logique de la page formulaire
 │   └── tests/                        # Dossier des spécifications (specs)
-│       ├── button.spec.ts            # Tests pour les boutons
-│       └── formRegistration.spec.ts  # Tests pour le formulaire
+│       ├── button.spec.ts            # Tests du composant bouton
+│       ├── checkbox.spec.ts          # Tests du composant checkbox
+│       └── formRegistration.spec.ts  # Tests du composant formulaire
 ├── node_modules/                     # Dépendances NPM
 ├── playwright-report/                # Rapports générés après exécution
 │   ├── data/
@@ -385,7 +387,6 @@ jobs:
       - name: Run Playwright tests
         # On utilise l'alias staging que l'on vient de créer
         run: npm run test:e2e:staging
-        continue-on-error: true
 
       - name: Upload report
         if: always()
