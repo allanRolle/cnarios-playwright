@@ -51,7 +51,6 @@ jobs:
       - name: Run Playwright tests
         # On utilise l'alias staging que l'on vient de créer
         run: npm run test:e2e:staging
-        continue-on-error: true
 
       - name: Upload report
         if: always()
