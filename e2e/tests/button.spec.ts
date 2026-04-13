@@ -15,12 +15,17 @@ test.describe('Button Component', () => {
     test("Tooltip should display 'Click to follow' or 'Click to unfollow' based on state", async ({
       buttonPage,
     }) => {
-      await buttonPage.followButton.hover()
-      await expect(buttonPage.tooltip).toBeVisible()
+      await Promise.all([
+        buttonPage.followButton.hover(),
+        expect(buttonPage.tooltip).toBeVisible(),
+      ])
+
       await expect(buttonPage.tooltip).toHaveText('Follow')
       await buttonPage.clickFollowButton()
-      await buttonPage.followButton.hover()
-      await expect(buttonPage.tooltip).toHaveText('Unfollow')
+      await Promise.all([
+        buttonPage.followButton.hover(),
+        expect(buttonPage.tooltip).toHaveText('Unfollow'),
+      ])
     })
     test("'Processing...' should appear before state changes and the button should be disabled during this time", async ({
       buttonPage,

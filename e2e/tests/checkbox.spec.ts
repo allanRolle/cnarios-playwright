@@ -91,7 +91,7 @@ test.describe('Checkbox Component', () => {
     await checkboxPage.verifyArticlesMatchPreferences(['Business'])
   })
   test.describe('Negative paths and Edge Cases', () => {
-    test('Unselect all categories and verify that no news is displayed', async ({
+    test('Unselect all categories and verify that no news is displayed and message is shown', async ({
       checkboxPage,
     }) => {
       await checkboxPage.setPreferencesButton.click()
@@ -99,6 +99,7 @@ test.describe('Checkbox Component', () => {
       await checkboxPage.unSelectAllCategories()
       await checkboxPage.savePreferences()
       await expect(checkboxPage.articleCards).toHaveCount(0)
+      await expect(checkboxPage.noNewsMessage).toBeVisible()
     })
     test('Click multiple times on the button "done" and verify that the preferences are saved only once', async ({
       checkboxPage,

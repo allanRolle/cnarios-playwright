@@ -13,6 +13,7 @@ export class CheckboxPage extends BasePage {
   readonly saveButton: Locator
   readonly articleCards: Locator
   readonly articleCategories: Locator
+  readonly noNewsMessage: Locator
 
   constructor(page: Page) {
     super(page)
@@ -32,6 +33,9 @@ export class CheckboxPage extends BasePage {
     this.articleCards = page.locator('.css-12nllm1')
     // Localise spécifiquement le texte de la catégorie à l'intérieur des cartes
     this.articleCategories = this.articleCards.locator('.css-1na2cob')
+    this.noNewsMessage = page.getByText(
+      'No news to display. Select categories using "Set Preferences".'
+    )
   }
   async getAllVisibleCategories(): Promise<string[]> {
     const texts = await this.articleCategories.allTextContents()
