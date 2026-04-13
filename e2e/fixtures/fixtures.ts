@@ -1,7 +1,7 @@
 import { test as base } from '@playwright/test'
 import { ButtonPage } from '../pages/ButtonPage'
-import { FormRegistrationPage } from '../pages/FormRegistration'
-import { CheckboxPage } from '../pages/Checkbox'
+import { FormRegistrationPage } from '../pages/FormRegistrationPage'
+import { CheckboxPage } from '../pages/CheckboxPage'
 
 type MyFixtures = {
   buttonPage: ButtonPage
