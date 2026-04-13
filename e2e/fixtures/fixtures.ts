@@ -1,10 +1,12 @@
 import { test as base } from '@playwright/test'
 import { ButtonPage } from '../pages/ButtonPage'
 import { FormRegistrationPage } from '../pages/FormRegistration'
+import { CheckboxPage } from '../pages/Checkbox'
 
 type MyFixtures = {
   buttonPage: ButtonPage
   formRegistrationPage: FormRegistrationPage
+  checkboxPage: CheckboxPage
 }
 
 export const test = base.extend<MyFixtures>({
@@ -17,6 +19,11 @@ export const test = base.extend<MyFixtures>({
     const formRegistrationPage = new FormRegistrationPage(page)
     await page.goto('/concepts/form#try-it-yourself')
     await use(formRegistrationPage)
+  },
+  checkboxPage: async ({ page }, use) => {
+    const checkboxPage = new CheckboxPage(page)
+    await page.goto('/concepts/checkbox#try-it-yourself')
+    await use(checkboxPage)
   },
 })
 

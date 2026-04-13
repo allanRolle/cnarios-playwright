@@ -239,7 +239,7 @@
         </tr> 
         <tr>
             <td>NEWS_005</td>
-            <td>Open preference dialog, select a category, unselect same category and click on "done"</td>
+            <td>Open preference dialog, select a category, unselect same category, select same category and click on "done"</td>
             <td>News items same as before</td>
             <td>Positive</td>
             <td>Low</td>
@@ -291,7 +291,7 @@
 
 <p>✅ Page Object Model (POM) -> une classe par page qui contient sélecteurs et méthodes</p>
 <p>✅ Fixtures personnalisées pour une configuration de test réutilisable</p>
-<p>✅ GitLab CI (GitHub Actions)</p>
+<p>✅ GitLab CI (GitHub Actions) optimisée sous Docker</p>
 <p>✅ Séparation des données de tests de la logique</p>
 <p>✅ Architecture propre et évolutive</p>
 
@@ -327,4 +327,71 @@
 ├── package.json                      # Scripts et dépendances du projet
 ├── playwright.config.ts              # Configuration globale de Playwright
 └── README.md                         # Documentation principale
+</pre>
+
+## ⚙️ Pipeline GitLab CI
+
+<pre>
+name: Playwright Tests
+
+on:
+  push:
+    branches: [main, develop]
+    # Le pipeline ne se lancera QUE si un fichier dans ces dossiers est modifié
+    paths:
+      - 'e2e/**'
+      - 'playwright.config.ts'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/cnarios-playwright.yaml'
+
+  pull_request:
+    branches: [main]
+    paths:
+      - 'e2e/**'
+      - 'playwright.config.ts'
+      - 'package.json'
+
+jobs:
+  playwright-run:
+    runs-on: ubuntu-latest
+    # Utilisation de l'image Docker correspondant à ta version de package.json
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-jammy
+      # l'image Docker contient:
+      # - Node.js 18.x
+      # - Playwright 1.58.2
+      # - les navigateurs Chromium, Firefox et WebKit préinstallés
+      # - les outils nécessaires pour exécuter les tests Playwright
+      # - les dépendances système requises pour faire fonctionner les navigateurs et les tests Playwright
+      # - le systeme d'exploitation Ubuntu 22.04 (Jammy Jellyfish)
+      # - Environnement configuré pour le mode 'headless' (sans interface graphique), optimisé pour la CI.
+      # Cela garantit que les tests s'exécutent dans un environnement cohérent et identique pour chaque exécution, ce qui réduit les problèmes liés aux différences d'environnement et facilite le débogage.
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Utilisation du cache pour accélérer l'installation de node_modules
+      - name: Setup Node.js and Cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Playwright tests
+        # On utilise l'alias staging que l'on vient de créer
+        run: npm run test:e2e:staging
+        continue-on-error: true
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
 </pre>
