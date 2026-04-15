@@ -98,6 +98,14 @@
             <td>Medium</td>
         </tr>  
     </table>
+    <p>💡 Leçons tirées de ce scénario:</p>
+    <p>✏️ Gérer les boutons dynamiques « Suivre / Ne plus suivre »</p>
+    <p>✏️ Tester les états de chargement et d’inactivité des boutons</p>
+    <p>✏️ Vérifier le comportement au survol et des infobulles</p>
+    <p>✏️ Valider les transitions d’état des basculeurs</p>
+    <p>✏️ Tester plusieurs cartes de suggestions d’utilisateurs</p>
+    <p>✏️ Contrôler les modifications visuelles et textuelles</p>
+    <p>✏️ Gérer les clics sur les boutons avec délais</p>
     <p>🏞️ 📸 🗺️ Visuel du composant sous test:</p>
     <img src='./assets/buttons.png' alt='buttons' width='100%'>
 </details>
@@ -193,7 +201,13 @@
             <td>Negative</td>
             <td>Medium</td>
         </tr>
-    </table> 
+    </table>
+    <p>💡 Leçons tirées de ce scénario:</p>
+    <p>✏️ Comprendre la structure du formulaire et les types de champs</p> 
+    <p>✏️ Automatiser la saisie des données dans les champs texte et listes déroulantes</p> 
+    <p>✏️ Déclencher les messages de validation du formulaire</p> 
+    <p>✏️ Soumettre le formulaire et vérifier le comportement en cas de succès ou d’échec</p> 
+    <p>✏️ Tester des scénarios avec des entrées valides et invalides</p> 
     <p>🏞️ 📸 🗺️ Visuel du composant sous test:</p>
     <img src="./assets/form.png">
 </details>
@@ -282,7 +296,12 @@
             <td>Negative</td>
             <td>Medium</td>
         </tr> 
-    </table>    
+    </table>
+    <p>💡 Leçons tirées de ce scénario:</p>
+    <p>✏️ Automatiser la sélection et la désélection des cases à cocher</p>  
+    <p>✏️ Vérifier les valeurs des cases cochées</p>  
+    <p>✏️ Gérer les états par défaut et les cases pré-cochées</p>  
+    <p>✏️ Interagir avec les libellés pour modifier l’état des cases à cocher</p>     
     <p>🏞️ 📸 🗺️ Visuel du composant sous test:</p>
     <img src="./assets/checkbox.png"> 
 </details>
