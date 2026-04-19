@@ -34,6 +34,13 @@ jobs:
       # - Environnement configuré pour le mode 'headless' (sans interface graphique), optimisé pour la CI.
       # Cela garantit que les tests s'exécutent dans un environnement cohérent et identique pour chaque exécution, ce qui réduit les problèmes liés aux différences d'environnement et facilite le débogage.
 
+    # Stratégie de Sharding
+    strategy:
+      fail-fast: true
+      matrix:
+        shardIndex: [1, 2, 3] # On lance 3 machines
+        shardTotal: [3]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -49,11 +56,44 @@ jobs:
         run: npm ci
 
       - name: Run Playwright tests
-        # On utilise l'alias staging que l'on vient de créer
-        run: npm run test:e2e:staging
+        # On passe les arguments de shard à Playwright dynamiquement
+        run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --reporter=blob
 
-      - name: Upload report
+      - name: Upload blobreport
         if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: all-blob-reports # Même nom pour tous les shards
+          path: blob-report/
+          retention-days: 1
+
+  merge-reports:
+    # Ce job ne commence que si le job de test est fini
+    if: always()
+    needs: [playwright-run]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download all blobs
+        uses: actions/download-artifact@v4
+        with:
+          name: all-blob-reports
+          path: all-blob-reports
+
+      - name: Merge into HTML Report
+        run: npx playwright merge-reports --reporter html ./all-blob-reports
+
+      - name: Upload final HTML report
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
