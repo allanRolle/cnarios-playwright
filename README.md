@@ -306,6 +306,88 @@
     <img src="./assets/checkbox.png"> 
 </details>
 
+<details>
+    <summary>Quizz App</summary><br/>
+    <p>😎👌🔥 Positive Scenarios and Edge Cases</p>
+    <table>
+        <tr>
+            <th>Test ID</th>
+            <th>Scenario</th>
+            <th>Expected Result</th>
+            <th>Type</th>
+            <th>Priority</th>
+        </tr>
+        <tr>
+            <td>QUIZ_001</td>
+            <td>Submit quiz with all correct answers</td>
+            <td>Score displays as full and result shows 'Pass 🎉'</td>
+            <td>Positive</td>
+            <td>High</td>
+        </tr>    
+        <tr>
+            <td>QUIZ_002</td>
+            <td>Submit quiz with partials correct answers (3 correct, 1 incorrect)</td>
+            <td>Score is accurate, and result shows Pass if ≥60%, else Fail</td>
+            <td>Positive</td>
+            <td>Medium</td>
+        </tr>  
+        <tr>
+            <td>QUIZ_003</td>
+            <td>Submit quiz and click on 'Try Again'</td>
+            <td>The quiz should be reset and all choices not selected</td>
+            <td>Positive</td>
+            <td>High</td>
+        </tr>
+    </table>
+    <p>🚨❗🚫 Negative Scenarios and Edge Cases</p>
+    <table>
+        <tr>
+            <th>Test ID</th>
+            <th>Scenario</th>
+            <th>Expected result / risk identified</th>
+            <th>Type</th>
+            <th>Priority</th>
+        </tr>
+        <tr>
+            <td>QUIZ_004</td>
+            <td>Submit quiz with all incorrect answers</td>
+            <td>Score should be 0 and result should show 'Fail ❌'</td>
+            <td>Negative</td>
+            <td>High</td>
+        </tr>  
+        <tr>
+            <td>QUIZ_005</td>
+            <td>Submit without answering any questions</td>
+            <td>Score should be 0 and 'Fail ❌' should be shown</td>
+            <td>Negative</td>
+            <td>Medium</td>
+        </tr> 
+        <tr>
+            <td>QUIZ_006</td>
+            <td>Submit quiz with partials correct answers (2 correct, 2 incorrect)</td>
+            <td>Score is 2/4, and result shows 'Fail ❌'</td>
+            <td>Negative</td>
+            <td>Medium</td>
+        </tr> 
+        <tr>
+            <td>QUIZ_007</td>
+            <td>Change answer in the same question</td>
+            <td>Select one answer, then select another answer from the same question and verify selection</td>
+            <td>Negative</td>
+            <td>Medium</td>
+        </tr> 
+        <tr>
+            <td>QUIZ_008</td>
+            <td>Quiz resets if user leaves the page</td>
+            <td>Select one or two answers, leave the page and check for quiz resets</td>
+            <td>Negative</td>
+            <td>Medium</td>
+        </tr> 
+    </table>    
+    <p>🏞️ 📸 🗺️ Visuel du composant sous test:</p>
+    <img src="./assets/quizz.png"> 
+</details>
+
 ## 🧱 Architecture
 
 <p>✅ Page Object Model (POM) -> une classe par page qui contient sélecteurs et méthodes</p>
@@ -325,17 +407,20 @@
 ├── e2e/                              # Cœur des tests de bout en bout
 │   ├── data/                         # Dossier des données de test
 │   │   └── formRegistrationData.ts   # Données de test ou types TS
+│   │   └── quizAppData.ts            # Données de test ou types TS
 │   ├── fixtures/                     # Dossier des fixtures
 │   │   └── fixtures.ts               # Extension du test Playwright
 │   ├── pages/                        # Page Object Model (POM)
 │   │   ├── BasePage.ts               # Classe parente avec méthodes communes
-│   │   ├── ButtonPage.ts             # Logique de la page boutons
-│   │   └── CheckboxPage.ts           # Logique de la page checkbox
-│   │   └── FormRegistrationPage.ts   # Logique de la page formulaire
+│   │   ├── ButtonPage.ts             # Classe TS composant bouton type button
+│   │   └── CheckboxPage.ts           # Classe TS composant checkbox
+│   │   └── FormRegistrationPage.ts   # Classe TS composant formulaire
+│   │   └── RadioButtonPage.ts        # Classe TS composant boutton type radio
 │   └── tests/                        # Dossier des spécifications (specs)
-│       ├── button.spec.ts            # Tests du composant bouton
+│       ├── button.spec.ts            # Tests du composant bouton type button
 │       ├── checkbox.spec.ts          # Tests du composant checkbox
 │       └── formRegistration.spec.ts  # Tests du composant formulaire
+│       └── radioButton.spec.ts       # Tests du composant bouton type radio
 ├── node_modules/                     # Dépendances NPM
 ├── playwright-report/                # Rapports générés après exécution
 │   ├── data/
@@ -350,7 +435,7 @@
 └── README.md                         # Documentation principale
 </pre>
 
-## ⚙️ Pipeline GitLab CI
+## ⚙️ Pipeline GitHub Actions
 
 <pre>
 name: Playwright Tests
@@ -358,7 +443,6 @@ name: Playwright Tests
 on:
   push:
     branches: [main, develop]
-    # Le pipeline ne se lancera QUE si un fichier dans ces dossiers est modifié
     paths:
       - 'e2e/**'
       - 'playwright.config.ts'
@@ -376,24 +460,19 @@ on:
 jobs:
   playwright-run:
     runs-on: ubuntu-latest
-    # Utilisation de l'image Docker correspondant à ta version de package.json
     container:
       image: mcr.microsoft.com/playwright:v1.58.2-jammy
-      # l'image Docker contient:
-      # - Node.js 18.x
-      # - Playwright 1.58.2
-      # - les navigateurs Chromium, Firefox et WebKit préinstallés
-      # - les outils nécessaires pour exécuter les tests Playwright
-      # - les dépendances système requises pour faire fonctionner les navigateurs et les tests Playwright
-      # - le systeme d'exploitation Ubuntu 22.04 (Jammy Jellyfish)
-      # - Environnement configuré pour le mode 'headless' (sans interface graphique), optimisé pour la CI.
-      # Cela garantit que les tests s'exécutent dans un environnement cohérent et identique pour chaque exécution, ce qui réduit les problèmes liés aux différences d'environnement et facilite le débogage.
+
+    strategy:
+      fail-fast: true
+      matrix:
+        shardIndex: [1, 2, 3] # On lance 3 machines
+        shardTotal: [3]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Utilisation du cache pour accélérer l'installation de node_modules
       - name: Setup Node.js and Cache
         uses: actions/setup-node@v4
         with:
@@ -404,14 +483,58 @@ jobs:
         run: npm ci
 
       - name: Run Playwright tests
-        # On utilise l'alias staging que l'on vient de créer
-        run: npm run test:e2e:staging
+        run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --reporter=blob
 
-      - name: Upload report
+      - name: Upload blobreport
         if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: all-blob-reports-${{ matrix.shardIndex }}
+          path: blob-report/
+          retention-days: 1
+
+  merge-reports:
+    if: always()
+    needs: [playwright-run]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download all blobs
+        uses: actions/download-artifact@v4
+        with:
+          pattern: all-blob-reports-*
+          path: all-blob-reports
+          merge-multiple: true
+
+      - name: Merge into HTML Report
+        run: npx playwright merge-reports --reporter html ./all-blob-reports
+
+      - name: Upload final HTML report
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+
 </pre>
+<p>📍 A propos du pipeline</p>
+- Stratégie de déclenchement intelligente (filtering) grâce au mot-clé <code>paths</code><br/>
+- Ciblage des branches en limitant lest tests lourds à <code>main</code> et <code>develop</code><br/>
+- Environnement figé grâce à l'utilisation de l'image Docker officielle<br/>
+- L'image Docker inclue les dépendances systèmes nécessaires pour un gain de temps<br/>
+- Utilisation de la <code>matrix</code> pour exécuter les tests en parallèle et réduire le temps d'exécution<br/>
+- Le <code> fail-fast: true</code> pour stopper le pipeline en cas d'erreurs<br>
+- Gestion avancée du cache et des dépendances avec <code>actions/setup-node</code> et <code>cache: npm</code><br/>
+- Utilisation de <code>npm ci</code> (Clean Install) qui garantit l'installation des bonnes versions des dépendances<br/>
+- Architecture de reporting et gestion des artifacts<br/>
+- Suppression des blobs temporaires après 1 jour et du rapport final après 30 jours

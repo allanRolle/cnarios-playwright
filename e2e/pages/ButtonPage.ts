@@ -20,6 +20,10 @@ export class ButtonPage extends BasePage {
     this.tooltip = page.locator('.css-1ydfzmo')
   }
 
+  async open() {
+    await this.page.goto('/concepts/button#try-it-yourself')
+  }
+
   async clickFollowButton() {
     await this.followButton.click()
   }

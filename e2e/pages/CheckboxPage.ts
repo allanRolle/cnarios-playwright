@@ -37,6 +37,10 @@ export class CheckboxPage extends BasePage {
       'No news to display. Select categories using "Set Preferences".'
     )
   }
+  async open() {
+    await this.page.goto('/concepts/checkbox#try-it-yourself')
+  }
+
   async getAllVisibleCategories(): Promise<string[]> {
     const texts = await this.articleCategories.allTextContents()
     // On nettoie le texte pour ne garder que le nom de la catégorie

@@ -71,8 +71,7 @@ export class FormRegistrationPage extends BasePage {
     )
   }
 
-  // Méthodes d'action
-  async visitFormRegistrationPage() {
+  async open() {
     await this.page.goto('/concepts/form#try-it-yourself')
   }
 
