@@ -14,7 +14,7 @@
 <p>Each challenge will include positive test cases, negative test cases, and edge cases.</p>
 
 <details>
-    <summary>Button</summary><br/>
+    <summary>Social Media (test button states)</summary><br/>
     <p>😎👌🔥 Positive Scenarios and Edge Cases</p>
     <table>
         <tr>
@@ -111,7 +111,7 @@
 </details>
 
 <details>
-    <summary>Form</summary><br/>
+    <summary>Form registration (test form validation)</summary><br/>
     <p>😎👌🔥 Positive Scenarios and Edge Cases</p>
     <table>
         <tr>
@@ -213,7 +213,7 @@
 </details>
 
 <details>
-    <summary>Checkbox</summary><br/>
+    <summary>News articles feed (test checkboxes)</summary><br/>
     <p>😎👌🔥 Positive Scenarios and Edge Cases</p>
     <table>
         <tr>
@@ -307,7 +307,7 @@
 </details>
 
 <details>
-    <summary>Quizz App</summary><br/>
+    <summary>Quizz App (test checkbox inputs)</summary><br/>
     <p>😎👌🔥 Positive Scenarios and Edge Cases</p>
     <table>
         <tr>
