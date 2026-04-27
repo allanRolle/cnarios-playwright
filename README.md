@@ -307,7 +307,7 @@
 </details>
 
 <details>
-    <summary>Quizz App (test checkbox inputs)</summary><br/>
+    <summary>Quizz App (test radio inputs)</summary><br/>
     <p>😎👌🔥 Positive Scenarios and Edge Cases</p>
     <table>
         <tr>
@@ -383,6 +383,13 @@
             <td>Negative</td>
             <td>Medium</td>
         </tr> 
+        <tr>
+            <td>QUIZ_009</td>
+            <td>Select one or multiple wrong answers</td>
+            <td>Good answers are colored in red and selected wrong answers in green</td>
+            <td>Negative</td>
+            <td>Medium</td>
+        </tr> 
     </table>    
     <p>🏞️ 📸 🗺️ Visuel du composant sous test:</p>
     <img src="./assets/quizz.png"> 
@@ -392,7 +399,7 @@
 
 <p>✅ Page Object Model (POM) -> une classe par page qui contient sélecteurs et méthodes</p>
 <p>✅ Fixtures personnalisées pour une configuration de test réutilisable</p>
-<p>✅ GitLab CI (GitHub Actions) optimisée sous Docker</p>
+<p>✅ Pipeline (GitHub Actions) optimisé sous Docker et stratégie de parallélisation</p>
 <p>✅ Séparation des données de tests de la logique</p>
 <p>✅ Architecture propre et évolutive</p>
 
@@ -533,7 +540,7 @@ jobs:
 - Environnement figé grâce à l'utilisation de l'image Docker officielle<br/>
 - L'image Docker inclue les dépendances systèmes nécessaires pour un gain de temps<br/>
 - Utilisation de la <code>matrix</code> pour exécuter les tests en parallèle et réduire le temps d'exécution<br/>
-- Le <code> fail-fast: true</code> pour stopper le pipeline en cas d'erreurs<br>
+- Le <code>fail-fast: true</code> pour stopper le pipeline en cas d'erreurs<br>
 - Gestion avancée du cache et des dépendances avec <code>actions/setup-node</code> et <code>cache: npm</code><br/>
 - Utilisation de <code>npm ci</code> (Clean Install) qui garantit l'installation des bonnes versions des dépendances<br/>
 - Architecture de reporting et gestion des artifacts<br/>

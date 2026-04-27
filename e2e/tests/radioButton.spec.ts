@@ -71,6 +71,68 @@ test.describe('Radio Button Component', () => {
         ).not.toBeChecked()
         await expect(radioButtonPage.statusText).not.toBeVisible()
         await expect(radioButtonPage.scoreText).not.toBeVisible()
+      }),
+      test('Good answers are colored in red and selected wrong answers in green', async ({
+        radioButtonPage,
+      }) => {
+        await radioButtonPage.selectAnswer('XPath')
+        await radioButtonPage.selectAnswer('To refresh the browser')
+        await radioButtonPage.selectAnswer('To submit a form')
+        await radioButtonPage.selectAnswer('navigate().refresh()')
+
+        await radioButtonPage.clickSubmit()
+
+        const firstCorrectAnswer = radioButtonPage.page.locator(
+          'span.text-green-600',
+          { hasText: /^get\(url\)$/ }
+        )
+        const firstWrongAnswer = radioButtonPage.page.locator(
+          'span.text-red-600',
+          {
+            hasText: /^navigate\(\)\.refresh\(\)$/,
+          }
+        )
+
+        await expect(firstWrongAnswer).toBeVisible()
+        await expect(firstCorrectAnswer).toBeVisible()
+
+        const secondCorrectAnswer = radioButtonPage.page.locator(
+          'span.text-green-600',
+          { hasText: /^To locate a single web element$/ }
+        )
+        const secondWrongAnswer = radioButtonPage.page.locator(
+          'span.text-red-600',
+          {
+            hasText: /^To submit a form$/,
+          }
+        )
+
+        const thirdCorrectAnswer = radioButtonPage.page.locator(
+          'span.text-green-600',
+          { hasText: /^ID$/ }
+        )
+        const thirdWrongAnswer = radioButtonPage.page.locator(
+          'span.text-red-600',
+          {
+            hasText: /^XPath$/,
+          }
+        )
+        const fourthCorrectAnswer = radioButtonPage.page.locator(
+          'span.text-green-600',
+          { hasText: /^To provide explicit wait until a condition is met$/ }
+        )
+        const fourthWrongAnswer = radioButtonPage.page.locator(
+          'span.text-red-600',
+          {
+            hasText: /^To refresh the browser$/,
+          }
+        )
+
+        await expect(fourthWrongAnswer).toBeVisible()
+        await expect(fourthCorrectAnswer).toBeVisible()
+
+        await expect(thirdWrongAnswer).toBeVisible()
+        await expect(thirdCorrectAnswer).toBeVisible()
       }))
   })
 })
