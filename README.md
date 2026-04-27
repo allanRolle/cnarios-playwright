@@ -395,6 +395,130 @@
     <img src="./assets/quizz.png"> 
 </details>
 
+<details>
+    <summary>Date Picker (test selection of dates)</summary><br/>
+    <p>😎👌🔥 Positive Scenarios and Edge Cases</p>
+    <table>
+        <tr>
+            <th>Test ID</th>
+            <th>Scenario</th>
+            <th>Expected Result</th>
+            <th>Type</th>
+            <th>Priority</th>
+        </tr>
+        <tr>
+            <td>EMP_001</td>
+            <td>Add a valid employment record</td>
+            <td>Employment entry should appear in the list without errors</td>
+            <td>Positive</td>
+            <td>High</td>
+        </tr>
+        <tr>
+            <td>EMP_002</td>
+            <td>Add multiple non-overlapping employment records</td>
+            <td>All records should be saved and displayed correctly</td>
+            <td>Positive</td>
+            <td>Medium</td>
+        </tr>
+        <tr>
+            <td>EMP_003</td>
+            <td>Add employment with same start and end date</td>
+            <td>Record should be added if allowed by business logic</td>
+            <td>Positive</td>
+            <td>Low</td>
+        </tr> 
+        <tr>
+            <td>EMP_004</td>
+            <td>Open employment modal and cancel without saving</td>
+            <td>Modal closes and no new data is added</td>
+            <td>Positive</td>
+            <td>Low</td>
+        </tr>
+        <tr>
+            <td>EMP_005</td>
+            <td>Remove an employment</td>
+            <td>The removed employment should not appear in the list</td>
+            <td>Positive</td>
+            <td>High</td>
+        </tr>       
+    </table>
+    <p>🚨❗🚫 Negative Scenarios and Edge Cases</p>
+    <table>
+        <tr>
+            <th>Test ID</th>
+            <th>Scenario</th>
+            <th>Expected result / risk identified</th>
+            <th>Type</th>
+            <th>Priority</th>
+        </tr>
+        <tr>
+            <td>EMP_006</td>
+            <td>Try adding overlapping employment dates</td>
+            <td>Warning should be shown and record should not be added</td>
+            <td>Negative</td>
+            <td>High</td>
+        </tr> 
+        <tr>
+            <td>EMP_007</td>
+            <td>Try adding a job without selecting any date</td>
+            <td>Form should show validation error and block submission</td>
+            <td>Negative</td>
+            <td>High</td>
+        </tr>
+        <tr>
+            <td>EMP_008</td>
+            <td>Try adding a job where end date is before start date</td>
+            <td>Validation message should be shown and form should not submit</td>
+            <td>Negative</td>
+            <td>Medium</td>
+        </tr>  
+    </table>
+    <p>🪲🐞🐝 Bug(s) Found</p>
+    <table>
+        <tr>
+            <td>Test ID</td>
+            <td>QUIZ_008</td>
+        </tr>    
+            <td>Title</td>
+            <td>Try adding a job where end date is before start date</td>
+        </tr>    
+            <td>Priority</td>
+             <td>High</td>
+        </tr>    
+            <td>Environment</td>
+             <td>Production - site cnarios.com (Navigateur Chrome 124, Windows 11)</td>
+        </tr>    
+            <td style="vertical-align: top;">Description</td>
+            <td>
+                <ol>
+                    <li>Go to challenge page DatePicker</li>
+                    <li>Click on the button "Add Employment</li>
+                    <li>Enter a name of a company (ex:Google)</li>
+                    <li>Add a start date 01/01/2024</li>
+                    <li>Add an end date 01/01/2023 (before start date)</li>
+                    <li>Click on button 'Add'</li>
+                </ol>
+            </td>
+        </tr>    
+            <td style="vertical-align: top;">Expected result</td>
+            <td>The button 'Add' should be <code>disabled</code> preventing submission or an error message should be displayed explaining the error.</td>
+        </tr>    
+            <td>Actual result</td>
+            <td>The entry was successfully added</td>
+        </tr>    
+        </tr>
+        <tr>
+    </table>
+    <p>💡 Leçons tirées de ce scénario:</p>
+    <p>✏️ Automatiser la sélection de dates uniques et de plages de dates.</p>
+    <p>✏️ Gérer les sélecteurs de dates (date pickers) natifs et personnalisés.</p>  
+    <p>✏️ Vérifier les dates sélectionnées dans les champs de saisie.</p>  
+    <p>✏️ Tester les restrictions de dates minimales et maximales.</p>  
+    <p>✏️ Gérer la navigation dans le calendrier et la validation des données.</p>       
+    <p>🏞️ 📸 🗺️ Visuel du composant sous test:</p>
+    <img src="./assets/datepicker.png"> 
+</details>
+
 ## 🧱 Architecture
 
 <p>✅ Page Object Model (POM) -> une classe par page qui contient sélecteurs et méthodes</p>
@@ -421,11 +545,13 @@
 │   │   ├── BasePage.ts               # Classe parente avec méthodes communes
 │   │   ├── ButtonPage.ts             # Classe TS composant bouton type button
 │   │   └── CheckboxPage.ts           # Classe TS composant checkbox
+│   │   └── DatePickerPage.ts         # Classe TS composant datepicker
 │   │   └── FormRegistrationPage.ts   # Classe TS composant formulaire
 │   │   └── RadioButtonPage.ts        # Classe TS composant boutton type radio
 │   └── tests/                        # Dossier des spécifications (specs)
 │       ├── button.spec.ts            # Tests du composant bouton type button
 │       ├── checkbox.spec.ts          # Tests du composant checkbox
+│       ├── datepicker.spec.ts        # Tests du composant datepicker
 │       └── formRegistration.spec.ts  # Tests du composant formulaire
 │       └── radioButton.spec.ts       # Tests du composant bouton type radio
 ├── node_modules/                     # Dépendances NPM
