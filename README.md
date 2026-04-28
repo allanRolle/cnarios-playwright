@@ -619,6 +619,87 @@
     <img src="./assets/dropdown.png"> 
 </details>
 
+<details>
+    <summary>Timepicker (test selecting hours)</summary><br/>
+    <p>😎👌🔥 Positive Scenarios and Edge Cases</p>
+    <table>
+        <tr>
+            <th>Test ID</th>
+            <th>Scenario</th>
+            <th>Expected Result</th>
+            <th>Type</th>
+            <th>Priority</th>
+        </tr>
+        <tr>
+            <td>SALON_001</td>
+            <td>Book appointment within working hours</td>
+            <td>Appointment should be booked and success alert should be shown</td>
+            <td>Positive</td>
+            <td>High</td>
+        </tr>  
+        <tr>
+            <td>SALON_002</td>
+            <td>Book appointment at exact opening time (9:00)</td>
+            <td>Appointment should be booked and success alert should be shown</td>
+            <td>Positive</td>
+            <td>Medium</td>
+        </tr>
+        <tr>
+            <td>SALON_002</td>
+            <td>Book appointment at exact closing time (18:00)</td>
+            <td>Appointment should be booked and success alert should be shown</td>
+            <td>Positive</td>
+            <td>Medium</td>
+        </tr>    
+    </table>
+    <p>🚨❗🚫 Negative Scenarios and Edge Cases</p>
+    <table>
+        <tr>
+            <th>Test ID</th>
+            <th>Scenario</th>
+            <th>Expected result / risk identified</th>
+            <th>Type</th>
+            <th>Priority</th>
+        </tr>
+        <tr>
+            <td>SALON_003</td>
+            <td>Book appointment before opening time (08:59)</td>
+            <td>Error alert should appear saying selected time is outside salon hours</td>
+            <td>Negative</td>
+            <td>High</td>
+        </tr> 
+        <tr>
+            <td>SALON_004</td>
+            <td>Book appointment after closing time (18:01)</td>
+            <td>Error alert should appear saying selected time is outside salon hours</td>
+            <td>Negative</td>
+            <td>High</td>
+        </tr> 
+        <tr>
+            <td>SALON_005</td>
+            <td>Test with invalid formats (blank, --:--, AB:CD)</td>
+            <td>Error alert should appear saying selected time is outside salon hours</td>
+            <td>Negative</td>
+            <td>High</td>
+        </tr> 
+        <tr>
+            <td>SALON_006</td>
+            <td>Test with partial valid formats (10:--)</td>
+            <td>Error alert should appear saying selected time is outside salon hours</td>
+            <td>Negative</td>
+            <td>High</td>
+        </tr>
+    </table>    
+    <p>💡 Leçons tirées de ce scénario:</p>
+    <p>✏️ Automatiser la sélection de valeurs temporelles spécifiques</p> 
+    <p>✏️ Gérer les sélecteurs de temps (time pickers) natifs et personnalisés</p> 
+    <p>✏️ Vérifier l'heure sélectionnée dans les champs de saisie</p> 
+    <p>✏️ Tester les restrictions d'heure minimum et maximum</p> 
+    <p>✏️ Gérer le format de l'heure (12h/24h) et la validation</p> 
+    <p>🏞️ 📸 🗺️ Visuel du composant sous test:</p>
+    <img src="./assets/timepicker.png"> 
+</details>
+
 ## 🧱 Architecture
 
 <p>✅ Page Object Model (POM) -> une classe par page qui contient sélecteurs et méthodes</p>
@@ -649,6 +730,7 @@
 │   │   └── Dropdown.ts               # Classe TS composant dropdown
 │   │   └── FormRegistrationPage.ts   # Classe TS composant formulaire
 │   │   └── RadioButtonPage.ts        # Classe TS composant boutton type radio
+│   │   └── TimepickerPage.ts         # Classe TS composant timepicker
 │   └── tests/                        # Dossier des spécifications (specs)
 │       ├── button.spec.ts            # Tests du composant bouton type button
 │       ├── checkbox.spec.ts          # Tests du composant checkbox
@@ -656,6 +738,7 @@
 │       ├── dropdown.spec.ts          # Tests du composant dropdown
 │       └── formRegistration.spec.ts  # Tests du composant formulaire
 │       └── radioButton.spec.ts       # Tests du composant bouton type radio
+│       └── timepicker.spec.ts        # Tests du composant timepicker
 ├── node_modules/                     # Dépendances NPM
 ├── playwright-report/                # Rapports générés après exécution
 │   ├── data/

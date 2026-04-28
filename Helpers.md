@@ -35,7 +35,7 @@
         </tr> 
     </table>    
     <p>💡 Leçons tirées de ce scénario:</p>
-    <p>✏️ Automatiser la sélection et la désélection des cases à cocher</p> 
+    <p>✏️ </p> 
     <p>🏞️ 📸 🗺️ Visuel du composant sous test:</p>
     <img src="./assets/form.png"> 
 </details>
