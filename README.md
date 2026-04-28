@@ -695,8 +695,7 @@ on:
 jobs:
   playwright-run:
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.58.2-jammy
+    container: mcr.microsoft.com/playwright:v1.58.2-jammy
 
     strategy:
       fail-fast: true
@@ -707,12 +706,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Setup Node.js and Cache
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci

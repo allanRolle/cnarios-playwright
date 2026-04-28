@@ -22,18 +22,16 @@ jobs:
   playwright-run:
     runs-on: ubuntu-latest
     # Utilisation de l'image Docker correspondant à ta version de package.json
-    container:
-      image: mcr.microsoft.com/playwright:v1.58.2-jammy
-      # l'image Docker contient:
-      # - Node.js 18.x
-      # - Playwright 1.58.2
-      # - les navigateurs Chromium, Firefox et WebKit préinstallés
-      # - les outils nécessaires pour exécuter les tests Playwright
-      # - les dépendances système requises pour faire fonctionner les navigateurs et les tests Playwright
-      # - le systeme d'exploitation Ubuntu 22.04 (Jammy Jellyfish)
-      # - Environnement configuré pour le mode 'headless' (sans interface graphique), optimisé pour la CI.
-      # Cela garantit que les tests s'exécutent dans un environnement cohérent et identique pour chaque exécution, ce qui réduit les problèmes liés aux différences d'environnement et facilite le débogage.
-
+    # l'image Docker contient:
+    # - Node.js 18.x
+    # - Playwright 1.58.2
+    # - les navigateurs Chromium, Firefox et WebKit préinstallés
+    # - les outils nécessaires pour exécuter les tests Playwright
+    # - les dépendances système requises pour faire fonctionner les navigateurs et les tests Playwright
+    # - le systeme d'exploitation Ubuntu 22.04 (Jammy Jellyfish)
+    # - Environnement configuré pour le mode 'headless' (sans interface graphique), optimisé pour la CI.
+    # Cela garantit que les tests s'exécutent dans un environnement cohérent et identique pour chaque exécution, ce qui réduit les problèmes liés aux différences d'environnement et facilite le débogage.
+    container: mcr.microsoft.com/playwright:v1.58.2-jammy
     # Stratégie de Sharding
     strategy:
       fail-fast: true
@@ -45,12 +43,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Utilisation du cache pour accélérer l'installation de node_modules
-      - name: Setup Node.js and Cache
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: 'npm'
+      - name: Update NPM to match local
+        run: npm install -g npm@11.13.0
 
       - name: Install dependencies
         run: npm ci
@@ -79,7 +73,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install dependencies
         run: npm ci
