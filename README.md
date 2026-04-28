@@ -470,7 +470,7 @@
             <td>Try adding a job where end date is before start date</td>
             <td>Validation message should be shown and form should not submit</td>
             <td>Negative</td>
-            <td>Medium</td>
+            <td>High</td>
         </tr>  
     </table>
     <p>🪲🐞🐝 Bug(s) Found</p>
@@ -519,6 +519,106 @@
     <img src="./assets/datepicker.png"> 
 </details>
 
+<details>
+    <summary>Dropdown (test selecting options)</summary><br/>
+    <p>😎👌🔥 Positive Scenarios and Edge Cases</p>
+    <table>
+        <tr>
+            <th>Test ID</th>
+            <th>Scenario</th>
+            <th>Expected Result</th>
+            <th>Type</th>
+            <th>Priority</th>
+        </tr>
+        <tr>
+            <td>CURR_001</td>
+            <td>Select a valid country from the dropdown</td>
+            <td>The currency field should display the correct currency code (e.g., INR for India)</td>
+            <td>Positive</td>
+            <td>High</td>
+        </tr> 
+        <tr>
+            <td>CURR_002</td>
+            <td>Clear the selected country</td>
+            <td>Currency field should display placeholder or empty value (e.g., '---')</td>
+            <td>Positive</td>
+            <td>Medium</td>
+        </tr>
+        <tr>
+            <td>CURR_003</td>
+            <td>Search for a country by typing in the dropdown</td>
+            <td>Matching countries should appear as the user types</td>
+            <td>Positive</td>
+            <td>Medium</td>
+        </tr>
+        <tr>
+            <td>CURR_004</td>
+            <td>Load component with no country selected initially</td>
+            <td>Currency field should display '---'</td>
+            <td>Positive</td>
+            <td>Low</td>
+        </tr> 
+        <tr>
+            <td>CURR_005</td>
+            <td>Persistance</td>
+            <td>Select a country, navigate to different tab and go back to the dropdown to check if selected country is still present</td>
+            <td>Positive</td>
+            <td>Low</td>
+        </tr>
+        <tr>
+            <td>CURR_006</td>
+            <td>Empty list - Clear list after partial entry</td>
+            <td>The dropdown should display a complete list of countries</td>
+            <td>Positive</td>
+            <td>Low</td>
+        </tr>
+        <tr>
+            <td>CURR_007</td>
+            <td>Unique selection - Pick a valid country, then select another one</td>
+            <td>The second selection should replace the first one</td>
+            <td>Positive</td>
+            <td>Low</td>
+        </tr>      
+    </table>
+    <p>🚨❗🚫 Negative Scenarios and Edge Cases</p>
+    <table>
+        <tr>
+            <th>Test ID</th>
+            <th>Scenario</th>
+            <th>Expected result / risk identified</th>
+            <th>Type</th>
+            <th>Priority</th>
+        </tr>
+        <tr>
+            <td>CURR_008</td>
+            <td>Type a country ('Atlantide' or '12345') not present in the list</td>
+            <td>Dropdown should display 'No options'</td>
+            <td>Negative</td>
+            <td>High</td>
+        </tr>
+        <tr>
+            <td>CURR_009</td>
+            <td>Test special characters in search like a script tag or an emoji</td>
+            <td>Search should not crash and should return 'no options'</td>
+            <td>Negative</td>
+            <td>Low</td>
+        </tr>
+        <tr>
+            <td>CURR_010</td>
+            <td>Test blank spaces</td>
+            <td>Search should not crash and should return 'no options'</td>
+            <td>Negative</td>
+            <td>Low</td>
+        </tr>     
+    </table>    
+    <p>💡 Leçons tirées de ce scénario:</p>
+    <p>✏️ Automatiser la sélection d'options dans les listes déroulantes</p>
+    <p>✏️ Vérifier les valeurs sélectionnées et les valeurs par défaut</p> 
+    <p>✏️ Interagir avec des composants de listes déroulantes personnalisés (notamment avec recherche)</p>  
+    <p>🏞️ 📸 🗺️ Visuel du composant sous test:</p>
+    <img src="./assets/dropdown.png"> 
+</details>
+
 ## 🧱 Architecture
 
 <p>✅ Page Object Model (POM) -> une classe par page qui contient sélecteurs et méthodes</p>
@@ -546,12 +646,14 @@
 │   │   ├── ButtonPage.ts             # Classe TS composant bouton type button
 │   │   └── CheckboxPage.ts           # Classe TS composant checkbox
 │   │   └── DatePickerPage.ts         # Classe TS composant datepicker
+│   │   └── Dropdown.ts               # Classe TS composant dropdown
 │   │   └── FormRegistrationPage.ts   # Classe TS composant formulaire
 │   │   └── RadioButtonPage.ts        # Classe TS composant boutton type radio
 │   └── tests/                        # Dossier des spécifications (specs)
 │       ├── button.spec.ts            # Tests du composant bouton type button
 │       ├── checkbox.spec.ts          # Tests du composant checkbox
 │       ├── datepicker.spec.ts        # Tests du composant datepicker
+│       ├── dropdown.spec.ts          # Tests du composant dropdown
 │       └── formRegistration.spec.ts  # Tests du composant formulaire
 │       └── radioButton.spec.ts       # Tests du composant bouton type radio
 ├── node_modules/                     # Dépendances NPM

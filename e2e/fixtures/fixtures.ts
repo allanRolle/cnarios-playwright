@@ -4,6 +4,7 @@ import { FormRegistrationPage } from '../pages/FormRegistrationPage'
 import { CheckboxPage } from '../pages/CheckboxPage'
 import { RadioButtonPage } from '../pages/RadioButtonPage'
 import { DatePickerPage } from '../pages/DatePickerPage'
+import { DropdownPage } from '../pages/Dropdown'
 
 type MyFixtures = {
   buttonPage: ButtonPage
@@ -11,6 +12,7 @@ type MyFixtures = {
   checkboxPage: CheckboxPage
   radioButtonPage: RadioButtonPage
   datePickerPage: DatePickerPage
+  dropdownPage: DropdownPage
 }
 
 export const test = base.extend<MyFixtures>({
@@ -38,6 +40,11 @@ export const test = base.extend<MyFixtures>({
     const datePickerPage = new DatePickerPage(page)
     await datePickerPage.open()
     await use(datePickerPage)
+  },
+  dropdownPage: async ({ page }, use) => {
+    const dropdownPage = new DropdownPage(page)
+    await dropdownPage.open()
+    await use(dropdownPage)
   },
 })
 
