@@ -23,10 +23,10 @@ jobs:
     runs-on: ubuntu-latest
     # Utilisation de l'image Docker correspondant à ta version de package.json
     container:
-      image: mcr.microsoft.com/playwright:v1.58.2-jammy
+      image: mcr.microsoft.com/playwright:v1.48.2-jammy
       # l'image Docker contient:
       # - Node.js 18.x
-      # - Playwright 1.58.2
+      # - Playwright 1.48.2
       # - les navigateurs Chromium, Firefox et WebKit préinstallés
       # - les outils nécessaires pour exécuter les tests Playwright
       # - les dépendances système requises pour faire fonctionner les navigateurs et les tests Playwright
