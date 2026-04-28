@@ -5,7 +5,7 @@ import { CheckboxPage } from '../pages/CheckboxPage'
 import { RadioButtonPage } from '../pages/RadioButtonPage'
 import { DatePickerPage } from '../pages/DatePickerPage'
 import { DropdownPage } from '../pages/Dropdown'
-import { TimepickerPage } from '../pages/timepickerPage'
+import { TimepickerPage } from '../pages/TimepickerPage'
 
 type MyFixtures = {
   buttonPage: ButtonPage
