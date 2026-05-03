@@ -845,7 +845,6 @@ jobs:
 - L'image Docker inclue les dépendances systèmes nécessaires pour un gain de temps<br/>
 - Utilisation de la <code>matrix</code> pour exécuter les tests en parallèle et réduire le temps d'exécution<br/>
 - Le <code>fail-fast: true</code> pour stopper le pipeline en cas d'erreurs<br>
-- Gestion avancée du cache et des dépendances avec <code>actions/setup-node</code> et <code>cache: npm</code><br/>
 - Utilisation de <code>npm ci</code> (Clean Install) qui garantit l'installation des bonnes versions des dépendances<br/>
 - Architecture de reporting et gestion des artifacts<br/>
 - Suppression des blobs temporaires après 1 jour et du rapport final après 30 jours

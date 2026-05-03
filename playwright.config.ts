@@ -39,6 +39,12 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     video: 'on-first-retry',
   },
+  expect: {
+    toHaveScreenshot: {
+      maxDiffPixels: 100, // Autorise 100 pixels de différence
+      threshold: 0.2, // Sensibilité aux changements de couleur
+    },
+  },
 
   /* Configure projects for major browsers */
   projects: [

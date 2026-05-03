@@ -53,6 +53,16 @@ jobs:
         # On passe les arguments de shard à Playwright dynamiquement
         run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --reporter=blob
 
+      - name: Upload Snapshots on Failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-snapshots
+          path: |
+            **/__snapshots__/*
+            test-results/
+          retention-days: 1
+
       - name: Upload blobreport
         if: always()
         uses: actions/upload-artifact@v4
