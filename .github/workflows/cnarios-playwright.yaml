@@ -61,7 +61,7 @@ jobs:
           path: |
             **/__snapshots__/*
             test-results/
-          retention-days: 1
+          retention-days: 2
 
       - name: Upload blobreport
         if: always()
