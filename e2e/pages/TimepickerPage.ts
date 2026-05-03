@@ -52,38 +52,19 @@ export class TimepickerPage extends BasePage {
    * dans le dossier personnalisé assets/screenshots.
    */
   async verifyErrorAppearance() {
-    // 1. On s'assure que l'alerte d'erreur est bien affichée
     await this.errorMessage.waitFor({ state: 'visible' })
-
-    // 2. Capture d'écran physique vers ton dossier spécifique
-    // L'option 'path' est parfaitement supportée ici
-    await this.errorMessage.screenshot({
-      path: 'assets/screenshots/error-alert-style.png',
-    })
-
-    // 3. Assertion visuelle (Visual Testing)
-    // On laisse Playwright gérer la comparaison dans son dossier de snapshots standard
     await expect(this.errorMessage).toHaveScreenshot('error-alert-style.png', {
       threshold: 0.2,
     })
   }
 
-  /**
-   * Capture l'aspect visuel du message de confirmation et l'enregistre
-   * dans le dossier personnalisé assets/screenshots.
-   */
   async verifyConfirmationAppearance() {
-    // 1. On attend que l'alerte soit stable
     await this.successMessage.waitFor({ state: 'visible' })
-
-    // 2. On effectue la capture d'écran brute vers ton dossier
-    // Ici, l'option 'path' est 100% valide et reconnue par l'IDE
-    await this.successMessage.screenshot({
-      path: 'assets/screenshots/confirmation-alert-style.png',
-    })
-
-    // 3. (Optionnel) On fait une vérification visuelle classique Playwright
-    // Si tu veux aussi que Playwright gère la comparaison de pixels
-    await expect(this.successMessage).toHaveScreenshot('confirmation-alert.png')
+    await expect(this.successMessage).toHaveScreenshot(
+      'confirmation-alert.png',
+      {
+        threshold: 0.2,
+      }
+    )
   }
 }
