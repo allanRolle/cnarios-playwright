@@ -30,7 +30,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     // On force le mode sans fenêtre uniquement si on est sur le serveur
-    headless: !!process.env.CI,
+    headless: !!process.env.CI || process.env.PWHEADLESS === '1',
     /* Base URL to use in actions like `await page.goto('')`. */
     baseURL: process.env.BASE_URL || 'https://www.cnarios.com/',
 
